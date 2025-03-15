@@ -61,6 +61,10 @@ export default function Levels() {
     navigate('/store');
   };
 
+  const handleAuth = () => {
+    navigate("/auth");
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-900 via-purple-900 to-gray-900 text-white p-8 relative overflow-hidden">
       <StarField />
@@ -80,7 +84,7 @@ export default function Levels() {
             </div>
 
             {/* Username Display */}
-            <div className="flex items-center space-x-2 bg-gray-800/50 backdrop-blur-sm px-4 py-2 rounded-xl border border-purple-500/20">
+            <div className="flex items-center space-x-2 bg-gray-800/50 backdrop-blur-sm px-4 py-2 rounded-xl border border-purple-500/20" onClick={handleAuth}>
               <User className="w-6 h-6 text-blue-400" />
               <span className="text-lg font-semibold text-white">{username}</span>
             </div>
