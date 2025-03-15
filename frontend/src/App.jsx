@@ -10,34 +10,12 @@ import Level4 from "./components/levels/Level4";
 import Level5 from "./components/levels/Level5";
 import Level6 from "./components/levels/Level6";
 import Level7 from "./components/levels/Level7";
-import { useAuthCheck } from './hooks/useAuthCheck';
-import { createContext } from "react";
-
-export const UserContext = createContext()
-
-function ProtectedRoute({ children }) {
-  const { isAuthenticated, loading, userId } = useAuthCheck();
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-xl font-semibold">Loading...</div>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return <Auth />;
-  }
-
-  return <UserContext.Provider value={{ userId }}>{children}</UserContext.Provider>;
-}
 
 const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <ProtectedRoute><Levels /></ProtectedRoute>
+      element: <Levels />
     },
     {
       path: "/auth",
@@ -45,11 +23,11 @@ const App = () => {
     },
     {
       path: "/leaderboard",
-      element: <ProtectedRoute><Leaderboard /></ProtectedRoute>
+      element: <Leaderboard />
     },
     {
       path: "/store",
-      element: <ProtectedRoute><Store /></ProtectedRoute>
+      element: <Store />
     },
     {
       path: "/level1",
@@ -57,27 +35,27 @@ const App = () => {
     },
     {
       path: "/level2",
-      element: <ProtectedRoute><Level2 /></ProtectedRoute>
+      element: <Level2 />
     },
     {
       path: "/level3",
-      element: <ProtectedRoute><Level3 /></ProtectedRoute>
+      element: <Level3 />
     },
     {
       path: "/level4",
-      element: <ProtectedRoute><Level4 /></ProtectedRoute>
+      element: <Level4 />
     },
     {
       path: "/level5",
-      element: <ProtectedRoute><Level5 /></ProtectedRoute>
+      element: <Level5 />
     },
     {
       path: "/level6",
-      element: <ProtectedRoute><Level6 /></ProtectedRoute>
+      element: <Level6 />
     },
     {
       path: "/level7",
-      element: <ProtectedRoute><Level7 /></ProtectedRoute>
+      element: <Level7 />
     }
   ]);
 

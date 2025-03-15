@@ -44,34 +44,34 @@ export default function Leaderboard() {
   const [error, setError] = useState(null);
   const stars = getRandomStars();
 
-  const fetchLeaderboard = async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(`/api/leaderboard?page=${currentPage}&perPage=${perPage}&timeFrame=${timeFrame}`);
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || 'Failed to fetch leaderboard');
+  // const fetchLeaderboard = async () => {
+  //   setIsLoading(true);
+  //   setError(null);
+  //   try {
+  //     const response = await fetch(`/api/leaderboard?page=${currentPage}&perPage=${perPage}&timeFrame=${timeFrame}`);
+  //     const data = await response.json();
+  //     if (!response.ok) throw new Error(data.error || 'Failed to fetch leaderboard');
 
-      const items = data.items.map((item) => ({
-        rank: item.rank,
-        username: item.expand.user.username,
-        level: item.level,
-        progress: item.progress,
-        timeFormatted: item.timeFormatted,
-      }));
+  //     const items = data.items.map((item) => ({
+  //       rank: item.rank,
+  //       username: item.expand.user.username,
+  //       level: item.level,
+  //       progress: item.progress,
+  //       timeFormatted: item.timeFormatted,
+  //     }));
 
-      setLeaderboardData(items);
-      setTotalPages(data.totalPages);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An unknown error occurred');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  //     setLeaderboardData(items);
+  //     setTotalPages(data.totalPages);
+  //   } catch (err) {
+  //     setError(err instanceof Error ? err.message : 'An unknown error occurred');
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchLeaderboard();
-  }, [currentPage, perPage, timeFrame]);
+  // useEffect(() => {
+  //   fetchLeaderboard();
+  // }, [currentPage, perPage, timeFrame]);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-950 via-gray-900 to-black text-white">
